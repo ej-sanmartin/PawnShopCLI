@@ -7,6 +7,7 @@
   "description": "CLI RPG shop. Buy and sell",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha || true"
   },
   "devDependencies": {
