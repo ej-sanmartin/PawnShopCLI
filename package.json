@@ -1,5 +1,17 @@
 {
+  "name": "Pawn Shop CLI",
+  "author": {
+    "name": "Edgar Jr San Martin"
+  },
+  "version": "1.0.0",
+  "description": "CLI RPG shop. Buy and sell",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha || true"
+  },
   "devDependencies": {
-    "jsdoc": "^4.0.2"
+    "chai": "^4.3.7",
+    "jsdoc": "^4.0.2",
+    "mocha": "^10.2.0"
   }
 }
