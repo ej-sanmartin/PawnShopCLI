@@ -1,6 +1,15 @@
+const prompt = require("prompt-sync")();
+
 // Example test.
 const example = () => "Hola.";
 
-module.exports = {
+function main() {
+    let example = prompt("Please enter anything.\t");
+    console.log(example);
+}
+
+main()
+
+export default {
     example,
 };

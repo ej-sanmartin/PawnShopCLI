@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 
-const { example } = require('../index');
+const { example } = require('../index').default;
 
 describe('Index tests.', () => {
     it ("Example function test.", () => {
