@@ -9,6 +9,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "node index.js",
+    "jsdoc" : "jsdoc -c jsdoc.json",
     "test": "mocha || true"
   },
   "devDependencies": {
