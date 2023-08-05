@@ -6,6 +6,7 @@
   "version": "1.0.0",
   "description": "CLI RPG shop. Buy and sell",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node index.js",
     "test": "mocha || true"
