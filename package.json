@@ -9,10 +9,11 @@
   "type": "commonjs",
   "scripts": {
     "start": "node index.js",
-    "jsdoc" : "jsdoc -c jsdoc.json",
+    "jsdoc": "jsdoc -c jsdoc.json",
     "test": "mocha || true"
   },
   "devDependencies": {
+    "@types/node": "^20.4.9",
     "chai": "^4.3.7",
     "jsdoc": "^4.0.2",
     "mocha": "^10.2.0"
