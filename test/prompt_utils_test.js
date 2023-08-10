@@ -3,7 +3,7 @@ const assert = require('chai').assert;
 const { sanitizeNumberInput,
         sanitizeStringInput } = require('../prompt_utils');
 
-describe('sanitizeNumberInput Tests.', () => {
+describe('sanitizeNumberInput Tests:', () => {
      it ("Succeeds on best case input", () => {
          let result = sanitizeNumberInput("1");
          assert.equal(result, 1);
@@ -30,8 +30,8 @@ describe('sanitizeNumberInput Tests.', () => {
      })
 })
 
-describe('sanitizeStringInput Tests.', () => {
-    it("Succeeds on best case input.", () => {
+describe('sanitizeStringInput Tests:', () => {
+    it("Succeeds on best case input", () => {
         let result = sanitizeStringInput("A");
         assert.equal(result, "A");
     })
