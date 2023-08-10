@@ -15,7 +15,7 @@ describe('removeCommasAndShift Tests:', () => {
         assert.equal(result, "1000");
     })
 
-    it("Removes comma from multiple words string", () => {
+    it("Removes commas from multiple words string", () => {
         let result = removesCommasAndShift("Me, Myself, and I");
         assert.equal(result, "Me Myself and I");
     })
