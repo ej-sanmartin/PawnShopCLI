@@ -121,7 +121,7 @@ function createPerson() {
     }
 
     // Separate from next prompts.
-    console.log("/n");
+    console.log("\n");
 
     // Generate random number between 150 - 250.
     let money = Math.floor(Math.random() * (150 + 1) + 100);
