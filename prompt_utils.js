@@ -20,6 +20,10 @@ function removeCommasAndShift(input) {
         return input;
     }
 
+    // TODO: Multiple strings being made. Make faster and less wasteful by
+    // shifting string in place over " " characters. Then return sliced string
+    // removing last characters equal to results.length.
+    //
     // Iterate through each index "," was found and use the input string to
     // create new string that excludes that character.
     let output = "";
