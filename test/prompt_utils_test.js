@@ -1,10 +1,33 @@
 const assert = require('chai').assert;
 
-const { sanitizeNumberInput,
+const { removesCommasAndShift,
+        sanitizeNumberInput,
         sanitizeStringInput } = require('../prompt_utils');
 
+describe('removeCommasAndShift Tests:', () => {
+    it("Does not change string if no commas", () => {
+        let result = removesCommasAndShift("a");
+        assert.equal(result, "a");
+    })
+
+    it("Removes comma from single number", () => {
+        let result = removesCommasAndShift("1,000");
+        assert.equal(result, "1000");
+    })
+
+    it("Removes comma from multiple words string", () => {
+        let result = removesCommasAndShift("Me, Myself, and I");
+        assert.equal(result, "Me Myself and I");
+    })
+
+    it("Empty string returns empty output", () => {
+        let result = removesCommasAndShift("");
+        assert.equal(result, "");
+    })
+})
+
 describe('sanitizeNumberInput Tests:', () => {
-     it ("Succeeds on best case input", () => {
+     it("Succeeds on best case input", () => {
          let result = sanitizeNumberInput("1");
          assert.equal(result, 1);
      })
