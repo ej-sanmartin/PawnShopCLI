@@ -2,10 +2,19 @@
 
 const { createPerson } = require('./person');
 
+/**
+ * Enum for what user is doing in the CLI shop
+ * @readonly
+ * @enum {string}
+ */
 const Choice = Object.freeze({
+    /** Default. User is deciding what to do */
     Deciding: Symbol("deciding"),
+    /** Buying action, user taken to shop flow */
     Buying: Symbol("buying"),
+    /** Saving action, save user information to external database */
     Saving: Symbol("saving"),
+    /** Exiting action, program will be closed */
     Exiting: Symbol("exiting")
 })
 
