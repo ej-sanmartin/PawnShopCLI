@@ -2,7 +2,7 @@
 
 const prompt = require("prompt-sync")();
 
-const { sanitizeNumberInput, sanitizeStringInput } = require('./prompt_utils');
+const {sanitizeNumberInput, sanitizeStringInput} = require('./prompt_utils');
 
 /** Class holding person data interacting with this shop CLI. */
 class Person {

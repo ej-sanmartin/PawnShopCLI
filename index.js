@@ -1,6 +1,6 @@
-// @ts-check
+// @ts-nocheck
 
-const { createPerson } = require('./person');
+const {createPerson} = require('./person');
 
 /**
  * Enum for what user is doing in the CLI shop
@@ -18,6 +18,11 @@ const Choice = Object.freeze({
     Exiting: Symbol("exiting")
 })
 
+/**
+ * 
+ * @param {number} day datetime stores days of the week as number, described below
+ * @returns {string} convert the number to a string day of the week
+ */
 function toDayOfTheWeek(day) {
     switch(day) {
         case 0:
@@ -38,15 +43,21 @@ function toDayOfTheWeek(day) {
 }
 
 /**
+ * @property {Function} outputGoodbyeMessage self explanatory. Logs bye message.
+ */
+function outputGoodbyeMessage() {
+    let date = new Date();
+    let dayOfTheWeek = toDayOfTheWeek(date.getDay());
+    console.log(`Thank you, have a Happy ${dayOfTheWeek}`);
+}
+
+/**
  * @property {Function} main entry point to this CLI program
  */
 function main() {
     let player = createPerson();
     console.log(player.toString());
-
-    let date = new Date();
-    let dayOfTheWeek = toDayOfTheWeek(date.getDay());
-    console.log(`Thank you, have a Happy ${dayOfTheWeek}`);
+    outputGoodbyeMessage();
 }
 
 main()

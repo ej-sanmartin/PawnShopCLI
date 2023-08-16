@@ -1,8 +1,8 @@
 const assert = require('chai').assert;
 
-const { removesCommasAndShift,
-        sanitizeNumberInput,
-        sanitizeStringInput } = require('../prompt_utils');
+const {removesCommasAndShift,
+       sanitizeNumberInput,
+       sanitizeStringInput} = require('../prompt_utils');
 
 describe('removeCommasAndShift Tests:', () => {
     it("Does not change string if no commas", () => {
