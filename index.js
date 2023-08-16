@@ -19,8 +19,7 @@ const Choice = Object.freeze({
 })
 
 /**
- * 
- * @param {number} day datetime stores days of the week as number, described below
+ * @param {number} day datetime stores days of the week as number
  * @returns {string} convert the number to a string day of the week
  */
 function toDayOfTheWeek(day) {
