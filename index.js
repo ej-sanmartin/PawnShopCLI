@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-check
 
 const {createPerson} = require('./person');
 
@@ -39,6 +39,9 @@ function toDayOfTheWeek(day) {
         case 6:
             return "Saturday"
     }
+
+    // Failure case if something goe wrong. This is a neutral message to output.
+    return "day";
 }
 
 /**
