@@ -123,7 +123,7 @@ class Store {
      checkIsItemOutOfStock(selected_item) {
         let item = this.inventory.get(selected_item);
 
-        // Method is private, thus nearly surely ever going to exist when called
+        // Method is private, thus nearly surely is going to exist when called
         if (item?.quantity === 0) {
             console.log("Looks like you got the last one.\n");
             this.inventory.delete(selected_item);
