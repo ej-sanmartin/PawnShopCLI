@@ -14,5 +14,6 @@
         "destination": "./jsdoc",
         "recurse": true,
         "tutorials": "./tutorials"
-    }
+    },
+    "access": "all"
 }
