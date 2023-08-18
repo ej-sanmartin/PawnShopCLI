@@ -8,12 +8,14 @@
  */
 
 /**
+ * Each individual item in a store's inventory
  * @typedef {Object} ItemInfo
  * @property {number} price price of item
  * @property {number} quantity how much of this item is available to buy
  */
 
 /**
+ * Everything the shops has, currently
  * @typedef {Map<string, ItemInfo>} Inventory
  */
 
