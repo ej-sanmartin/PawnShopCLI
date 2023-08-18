@@ -28,7 +28,6 @@ class Person {
         /**
          * @property {Function} setName sets name to builder Person object
          * @param {string} name person's name
-         * @returns {Person} instance of current Person class
          */
         setName(name) {
             this.name = name;
@@ -38,7 +37,6 @@ class Person {
         /**
          * @property {Function} setAge sets age to builder Person object
          * @param {number} age person's age
-         * @returns {Person} instance of current Person class
          */
         setAge(age) {
             this.age = age;
@@ -48,7 +46,6 @@ class Person {
         /**
          * @property {Function} setMoney sets money to builder Person object
          * @param {number} money amount of money person has
-         * @returns {Person} instance of current Person class
          */
         setMoney(money) {
             this.money = money;
