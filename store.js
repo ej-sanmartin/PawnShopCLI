@@ -97,6 +97,13 @@ class Store {
             return {result: false, money: money};
         }
 
+        let items_cost = item.price * quantity;
+
+        if (items_cost > money) {
+            console.log("Not enough money.\n");
+            return {result: false, money: money};
+        }
+
         item.quantity -= quantity;
 
         if (item.quantity == 0) {
@@ -104,13 +111,6 @@ class Store {
             this.inventory.delete(selected_item);
         } else {
             this.inventory.set(selected_item, item);
-        }
-
-        let items_cost = item.price * quantity;
-
-        if (items_cost > money) {
-            console.log("Not enough money.\n");
-            return {result: false, money: money};
         }
 
         let money_remaining = money - items_cost;
