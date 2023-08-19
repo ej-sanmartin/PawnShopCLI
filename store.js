@@ -98,9 +98,13 @@ class Store {
         }
 
         item.quantity -= quantity;
-        this.inventory.set(selected_item, item);
 
-        this.checkIsItemOutOfStock(selected_item);
+        if (item.quantity == 0) {
+            console.log("Looks like you got the last one.\n");
+            this.inventory.delete(selected_item);
+        } else {
+            this.inventory.set(selected_item, item);
+        }
 
         let items_cost = item.price * quantity;
 
@@ -111,23 +115,6 @@ class Store {
 
         let money_remaining = money - items_cost;
         return {result: true, money: money_remaining};
-     }
-
-     /**
-      * Checks if item is still in stock. If it isn't, remove from inventory
-      * @private
-      * @property {Function} checkIsItemOutOfStock
-      * @param {string} selected_item item in inventory that is being evaluated
-      * @returns void
-      */
-     checkIsItemOutOfStock(selected_item) {
-        let item = this.inventory.get(selected_item);
-
-        // Method is private, thus nearly surely is going to exist when called
-        if (item?.quantity === 0) {
-            console.log("Looks like you got the last one.\n");
-            this.inventory.delete(selected_item);
-        }
      }
 
      displayInventory() {
