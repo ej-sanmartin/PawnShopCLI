@@ -72,6 +72,4 @@ function sanitizeStringInput(input) {
     return cleaned_input.charAt(0).toUpperCase() + cleaned_input.slice(1);
 }
 
-exports.removesCommasAndShift = removeCommasAndShift;
-exports.sanitizeNumberInput = sanitizeNumberInput;
-exports.sanitizeStringInput = sanitizeStringInput;
+export {removeCommasAndShift, sanitizeNumberInput, sanitizeStringInput};

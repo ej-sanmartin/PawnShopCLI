@@ -143,5 +143,4 @@ function createStore() {
         .build();
 }
 
-exports.Store = Store;
-exports.createStore = createStore;
+export {createStore, Store};

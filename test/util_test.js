@@ -1,6 +1,6 @@
-const assert = require('chai').assert;
+import {assert} from 'chai';
 
-const {toDayOfTheWeek} = require('../util');
+import {toDayOfTheWeek} from '../util.js';
 
 describe("toDayOfTheWeek method tests:", () => {
     it("Succeeds on expected use case", () => {

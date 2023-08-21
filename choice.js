@@ -1,6 +1,8 @@
-const prompt = require("prompt-sync")();
+import psp from "prompt-sync-plus";
 
-const {sanitizeStringInput} = require("./prompt_utils");
+import {sanitizeStringInput} from './prompt_utils.js';
+
+const prompt = psp();
 
 /**
  * Enum for what user is doing in the CLI shop
@@ -29,7 +31,7 @@ function printChoices() {
         if (choice === "Unknown" || choice === "Deciding") continue;
         console.log(`${count++}. ${choice}`);
     }
-    console.log("\n");
+    console.log("");
 }
 
 /**
@@ -84,7 +86,4 @@ function handleChoice() {
     return Choice.Deciding;
 }
 
-exports.Choice = Choice;
-exports.choiceParser = choiceParser;
-exports.handleChoice = handleChoice;
-exports.printChoices = printChoices;
+export {Choice, choiceParser, handleChoice, printChoices};

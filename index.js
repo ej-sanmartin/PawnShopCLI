@@ -1,10 +1,12 @@
 // @ts-check
 
-const prompt = require("prompt-sync")();
+import psp from "prompt-sync-plus";
 
-const {Choice, handleChoice, printChoices} = require('./choice');
-const {goodbye} = require('./message');
-const {createPerson} = require('./person');
+import {Choice, handleChoice, printChoices} from './choice.js';
+import {goodbye} from './message.js';
+import {createPerson} from './person.js';
+
+const prompt = psp();
 
 /**
  * @property {Function} main entry point to this CLI program
@@ -18,6 +20,7 @@ function main() {
     while (currentChoice === Choice.Deciding) {
         printChoices();
         currentChoice = handleChoice();
+        console.log("");
     }
 
     goodbye();

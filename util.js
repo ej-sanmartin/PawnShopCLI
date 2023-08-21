@@ -26,4 +26,4 @@ function toDayOfTheWeek(day) {
     return "day";
 }
 
-exports.toDayOfTheWeek = toDayOfTheWeek;
+export {toDayOfTheWeek};

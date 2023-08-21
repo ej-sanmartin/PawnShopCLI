@@ -1,8 +1,10 @@
 // @ts-check
 
-const prompt = require("prompt-sync")();
+import psp from "prompt-sync-plus";
 
-const {sanitizeNumberInput, sanitizeStringInput} = require('./prompt_utils');
+import {sanitizeNumberInput, sanitizeStringInput} from './prompt_utils.js';
+
+const prompt = psp();
 
 /** Class holding person data interacting with this shop CLI. */
 class Person {
@@ -130,5 +132,4 @@ function createPerson() {
         .build();
 }
 
-exports.Person = Person;
-exports.createPerson = createPerson;
+export {Person, createPerson};

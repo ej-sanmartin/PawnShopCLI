@@ -1,6 +1,6 @@
-const assert = require('chai').assert;
+import {assert} from 'chai';
 
-const {createStore} = require('../store');
+import {createStore} from '../store.js';
 
 describe('Store Class Tests:', () => {
     it("Store class properly initialized", () => {

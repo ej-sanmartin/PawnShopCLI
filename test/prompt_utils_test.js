@@ -1,27 +1,27 @@
-const assert = require('chai').assert;
+import {assert} from 'chai';
 
-const {removesCommasAndShift,
+import {removeCommasAndShift,
        sanitizeNumberInput,
-       sanitizeStringInput} = require('../prompt_utils');
+       sanitizeStringInput} from '../prompt_utils.js';
 
 describe('removeCommasAndShift Tests:', () => {
     it("Does not change string if no commas", () => {
-        let result = removesCommasAndShift("a");
+        let result = removeCommasAndShift("a");
         assert.equal(result, "a");
     });
 
-    it("Removes comma from single number", () => {
-        let result = removesCommasAndShift("1,000");
+    it("remove comma from single number", () => {
+        let result = removeCommasAndShift("1,000");
         assert.equal(result, "1000");
     });
 
-    it("Removes commas from multiple words string", () => {
-        let result = removesCommasAndShift("Me, Myself, and I");
+    it("remove commas from multiple words string", () => {
+        let result = removeCommasAndShift("Me, Myself, and I");
         assert.equal(result, "Me Myself and I");
     });
 
     it("Empty string returns empty output", () => {
-        let result = removesCommasAndShift("");
+        let result = removeCommasAndShift("");
         assert.equal(result, "");
     });
 })
@@ -42,7 +42,7 @@ describe('sanitizeNumberInput Tests:', () => {
         assert.equal(result, -1);
      });
 
-     it("Removes commas", () => {
+     it("remove commas", () => {
         let result = sanitizeNumberInput("1,000");
         assert.equal(result, 1000);
      });

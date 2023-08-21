@@ -1,6 +1,6 @@
-const assert = require('chai').assert;
+import {assert} from 'chai';
 
-const {Choice, choiceParser} = require('../choice');
+import {Choice, choiceParser} from '../choice.js';
 
 describe("Choice tests:", () => {
     it("Choice.Buying works", () => {

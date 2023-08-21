@@ -1,6 +1,6 @@
 // @ts-check
 
-const {toDayOfTheWeek} = require('./util');
+import {toDayOfTheWeek} from './util.js';
 
 /**
  * @property {Function} goodbye self explanatory. Logs bye message.
@@ -11,4 +11,4 @@ function goodbye() {
     console.log(`Thank you, have a Happy ${dayOfTheWeek}`);
 }
 
-exports.goodbye = goodbye;
+export {goodbye};

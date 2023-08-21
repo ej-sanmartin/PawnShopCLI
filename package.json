@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "description": "CLI RPG shop. Buy and sell",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "jsdoc": "jsdoc -c jsdoc.json",
@@ -20,6 +20,7 @@
     "mocha-suppress-logs": "^0.3.1"
   },
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "prompt-sync": "^4.2.0",
+    "prompt-sync-plus": "^1.0.2"
   }
 }
