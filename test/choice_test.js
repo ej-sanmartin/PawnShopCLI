@@ -1,6 +1,7 @@
 import {assert} from 'chai';
+import sinon from 'sinon';
 
-import {Choice, choiceParser} from '../choice.js';
+import {Choice, choiceParser, printChoices} from '../choice.js';
 
 describe("Choice tests:", () => {
     it("Choice.Buying works", () => {
@@ -49,4 +50,28 @@ describe("Choice tests:", () => {
         assert.equal(testChoice3, Choice.Unknown);
         assert.equal(testChoice4, Choice.Unknown);
     });
+});
+
+describe("Choice helper method tests:", () => {
+    afterEach(() => {
+        sinon.restore();
+    });
+
+    // Spies on console.log to ensure proper messages are outputted
+    it("printChoices expected logging", () => {
+        let spy = sinon.spy(console, 'log');
+
+        printChoices();
+
+        // Called 3 times when printing all selectable choices plus 1 time after
+        assert.equal(4, spy.callCount);
+
+        sinon.assert.notCalled(spy.withArgs(sinon.match("Unknown")));
+        sinon.assert.notCalled(spy.withArgs(sinon.match("Deciding")));
+        sinon.assert.calledWith(spy.firstCall, sinon.match("Buying"));
+        sinon.assert.calledWith(spy.secondCall, sinon.match("Saving"));
+        sinon.assert.calledWith(spy.thirdCall, sinon.match("Exiting"));
+
+        spy.restore();
+    })
 });
