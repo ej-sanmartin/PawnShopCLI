@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "jsdoc": "jsdoc -c jsdoc.json",
-    "test": "mocha || true"
+    "test": "c8 mocha"
   },
   "devDependencies": {
     "@types/node": "^20.4.9",
