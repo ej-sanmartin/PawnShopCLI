@@ -103,11 +103,11 @@ function createPerson() {
     let age = -1;
     let hm = "Hm";
     while (true) {
-        if (name == "") {
+        if (name === "") {
             name = sanitizeStringInput(prompt("What's your name?\t"));
         }
 
-        if (age == -1) {
+        if (age === -1) {
             age = sanitizeNumberInput(prompt("How old are you?\t"));
         }
 
