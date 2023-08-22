@@ -1,6 +1,7 @@
 import psp from "prompt-sync-plus";
 
 import {sanitizeStringInput} from './prompt_utils.js';
+import { handleSaving } from "./saving.js";
 
 const prompt = psp();
 
@@ -75,7 +76,7 @@ function handleChoice() {
             console.log("Buying");
             break;
         case Choice.Saving:
-            console.log("Saving");
+            handleSaving();
             break;
         case Choice.Exiting:
             return Choice.Exiting;
