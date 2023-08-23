@@ -1,7 +1,7 @@
 import psp from "prompt-sync-plus";
 
 import {sanitizeStringInput} from './prompt_utils.js';
-import { handleSaving } from "./saving.js";
+import {handleSaving} from "./saving.js";
 
 const prompt = psp();
 
