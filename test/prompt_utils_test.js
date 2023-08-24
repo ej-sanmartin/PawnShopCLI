@@ -10,12 +10,12 @@ describe('removeCommasAndShift Tests:', () => {
         assert.equal(result, "a");
     });
 
-    it("remove comma from single number", () => {
+    it("Remove comma from single number", () => {
         let result = removeCommasAndShift("1,000");
         assert.equal(result, "1000");
     });
 
-    it("remove commas from multiple words string", () => {
+    it("Remove commas from multiple words string", () => {
         let result = removeCommasAndShift("Me, Myself, and I");
         assert.equal(result, "Me Myself and I");
     });
@@ -42,7 +42,7 @@ describe('sanitizeNumberInput Tests:', () => {
         assert.equal(result, -1);
      });
 
-     it("remove commas", () => {
+     it("Remove commas", () => {
         let result = sanitizeNumberInput("1,000");
         assert.equal(result, 1000);
      });
