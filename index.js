@@ -7,7 +7,7 @@ import {goodbye} from './message.js';
 import {createPerson} from './person.js';
 import {createStore} from './store.js';
 
-const prompt = psp();
+const prompt = psp(undefined);
 
 /**
  * @property {Function} main entry point to this CLI program

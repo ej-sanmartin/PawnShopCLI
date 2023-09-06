@@ -5,7 +5,7 @@ import psp from "prompt-sync-plus";
 import {Person} from './person.js';
 import {sanitizeNumberInput, sanitizeStringInput} from './prompt_utils.js';
 
-const prompt = psp();
+const prompt = psp(undefined);
 
 /**
  * Transaction object to hold if the transaction went through and money left

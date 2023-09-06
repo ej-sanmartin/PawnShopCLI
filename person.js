@@ -4,7 +4,7 @@ import psp from "prompt-sync-plus";
 
 import {sanitizeNumberInput, sanitizeStringInput} from './prompt_utils.js';
 
-const prompt = psp();
+const prompt = psp(undefined);
 
 /** Class holding person data interacting with this shop CLI. */
 class Person {

@@ -5,7 +5,7 @@ import {Person} from './person.js';
 import {handleSaving} from "./saving.js";
 import {handleBuy} from "./store.js";
 
-const prompt = psp();
+const prompt = psp(undefined);
 
 /** 
  * @typedef {Object} PromptResult
