@@ -14,7 +14,8 @@ const prompt = psp(undefined);
  */
 function main() {
     let player = createPerson();
-    console.log(`Welcome ${player.name}\n`);
+    console.log(`Welcome, ${player.name}`);
+    console.log(`You are going into the shop with $${player.money}\n`);
     let store = createStore();
 
     while (true) {
