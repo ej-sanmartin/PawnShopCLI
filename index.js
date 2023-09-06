@@ -5,6 +5,7 @@ import psp from "prompt-sync-plus";
 import {Choice, handleChoice, printChoices} from './choice.js';
 import {goodbye} from './message.js';
 import {createPerson} from './person.js';
+import {createStore} from './store.js';
 
 const prompt = psp();
 
@@ -14,12 +15,15 @@ const prompt = psp();
 function main() {
     let player = createPerson();
     console.log(player.toString());
+    let store = createStore();
 
-    let currentChoice = Choice.Deciding;
-
-    while (currentChoice === Choice.Deciding) {
+    while (true) {
         printChoices();
-        currentChoice = handleChoice();
+        let promptResult = handleChoice(store, player);
+
+        if (promptResult.choice === Choice.Exiting) {
+            break;
+        }
         console.log("");
     }
 

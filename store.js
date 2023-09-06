@@ -1,5 +1,12 @@
 // @ts-check
 
+import psp from "prompt-sync-plus";
+
+import {Person} from './person.js';
+import {sanitizeNumberInput, sanitizeStringInput} from './prompt_utils.js';
+
+const prompt = psp();
+
 /**
  * Transaction object to hold if the transaction went through and money left
  * @typedef {Object} TransactionResult
@@ -12,6 +19,13 @@
  * @typedef {Object} ItemInfo
  * @property {number} price price of item
  * @property {number} quantity how much of this item is available to buy
+ */
+
+/**
+ * Input from prompt about what the customer wants and, if applicable, how much
+ * @typedef {Object} CustomerRequest
+ * @property {string} request item or action that customer wants
+ * @property {number} quantity number of items customer wants to buy
  */
 
 /**
@@ -85,7 +99,7 @@ class Store {
      * @returns {TransactionResult} if buy possible and Player remaining balance
      */
     maybeBuy(selected_item, quantity, money) {
-        let item = this.inventory.get(selected_item);
+        let item = this.inventory.get(selected_item.toUpperCase());
 
         if (item === undefined) {
             console.log("I think I heard you wrong. This doesn't exist.\n");
@@ -115,7 +129,7 @@ class Store {
 
         let money_remaining = money - items_cost;
         return {result: true, money: money_remaining};
-     }
+    }
 
      displayInventory() {
         console.log("Item______________Price___Qty");
@@ -143,4 +157,91 @@ function createStore() {
         .build();
 }
 
-export {createStore, Store};
+/**
+ * 
+ * @param {Store} store facility being interacted with
+ * @returns {CustomerRequest} a struct like object that contains the customers experience traveling on company dime
+ */
+function handleBuyPrompt(store) {
+    let requested_item = "";
+    let quantity = -1;
+    while (true) {
+        store.displayInventory();
+        console.log("EXIT\n")
+
+        if (requested_item === "") {
+            requested_item = sanitizeStringInput(prompt("Whatya buying?\n"));
+        }
+
+        if (requested_item === "Exit") {
+            break;
+        }
+
+        if (quantity === -1) {
+            quantity = sanitizeNumberInput(prompt("How many?\t"));
+        }
+
+        if (requested_item != "" && quantity > 0) {
+            break;
+        }
+
+        console.log("What was that?\n");
+    }
+
+    return {request: requested_item, quantity: quantity};
+}
+
+/**
+ * @property {Function} doKeepGoing whether player wants to continue
+ * @returns {boolean} whether player wants to continue. False is no, True is yes
+ */
+function doKeepGoing() {
+    let result;
+    while (true) {
+        let response = sanitizeStringInput(prompt("Anything else? (yN)\n"));
+
+        if (response === "Y") {
+            result = true;
+            break;
+        } else  if (response === "N") {
+            result = false;
+            break;
+        }
+
+        console.log("Sorry, something's in my ear.\n");
+    }
+
+    return result;
+}
+
+/**
+ * 
+ * @param {Store} store store that player is interacting with
+ * @param {Person} customer the player is represented as a 'customer'
+ * @returns {Person} because JS is pass-by-value type language, returns updated
+ * Person object
+ */
+function handleBuy(store, customer) {
+    while (true) {
+       let customerRequest = handleBuyPrompt(store);
+
+       if (customerRequest.request === "Exit\n") {
+        break;
+       }
+
+       let result = store.maybeBuy(customerRequest.request,
+                                   customerRequest.quantity, customer.money);
+
+       if (result.result === true) {
+            customer.money = result.money;
+            let keepGoing = doKeepGoing();
+            if (keepGoing) continue;
+            break;
+       }
+    }
+
+    console.log("Exiting store...\n");
+    return customer;
+}
+
+export {createStore, handleBuy, Store};

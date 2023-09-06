@@ -1,9 +1,17 @@
 import psp from "prompt-sync-plus";
 
 import {sanitizeStringInput} from './prompt_utils.js';
+import {Person} from './person.js';
 import {handleSaving} from "./saving.js";
+import {handleBuy} from "./store.js";
 
 const prompt = psp();
+
+/** 
+ * @typedef {Object} PromptResult
+ * @property {Person} customer data about client using this application
+ * @property {Choice} choice what client expects from running this CLI tool
+ */
 
 /**
  * Enum for what user is doing in the CLI shop
@@ -66,25 +74,27 @@ function choiceParser(choice) {
 
 /**
  * Takes user input and performs action based on that
- * @returns {Choice} the choice selected or propagated if failure occurs
+ * @property {Store} store one of a kind, beautiful storefront
+ * @property {Person} customer interacting with this application
+ * @returns {PromptResult} propagates customer choice and passed by value item
  */
-function handleChoice() {
+function handleChoice(store, customer) {
     let currentChoice = choiceParser(prompt("What will it be today?\n"));
 
     switch (currentChoice) {
         case Choice.Buying:
-            console.log("Buying");
+            customer = handleBuy(store, customer)
             break;
         case Choice.Saving:
             handleSaving();
             break;
         case Choice.Exiting:
-            return Choice.Exiting;
+            return {choice: Choice.Exiting, customer: customer};
         default:
             console.log("Unknown");
     }
 
-    return Choice.Deciding;
+    return {choice: Choice.Deciding, customer: customer};
 }
 
 export {Choice, choiceParser, handleChoice, printChoices};
