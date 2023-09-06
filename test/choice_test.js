@@ -7,31 +7,37 @@ describe("Choice tests:", () => {
     it("Choice.Buying works", () => {
         let testChoice1 = choiceParser("1");
         let testChoice2 = choiceParser("1.");
-        let testChoice3 = choiceParser("buying");
+        let testChoice3 = choiceParser("buy");
+        let testChoice4 = choiceParser("buying");
 
         assert.equal(testChoice1, Choice.Buying);
         assert.equal(testChoice2, Choice.Buying);
         assert.equal(testChoice3, Choice.Buying);
+        assert.equal(testChoice4, Choice.Buying);
     });
 
     it("Choice.Saving works", () => {
         let testChoice1 = choiceParser("2");
         let testChoice2 = choiceParser("2.");
-        let testChoice3 = choiceParser("saving");
+        let testChoice3 = choiceParser("save");
+        let testChoice4 = choiceParser("saving");
 
         assert.equal(testChoice1, Choice.Saving);
         assert.equal(testChoice2, Choice.Saving);
         assert.equal(testChoice3, Choice.Saving);
+        assert.equal(testChoice4, Choice.Saving);
     });
 
     it("Choice.Exiting works", () => {
         let testChoice1 = choiceParser("3");
         let testChoice2 = choiceParser("3.");
-        let testChoice3 = choiceParser("exiting");
+        let testChoice3 = choiceParser("exit");
+        let testChoice4 = choiceParser("exiting");
 
         assert.equal(testChoice1, Choice.Exiting);
         assert.equal(testChoice2, Choice.Exiting);
         assert.equal(testChoice3, Choice.Exiting);
+        assert.equal(testChoice4, Choice.Exiting);
     });
 
     it("Choice.Deciding works", () => {

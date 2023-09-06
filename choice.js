@@ -55,14 +55,17 @@ function choiceParser(choice) {
     switch (choiceString) {
         case "1":
         case "1.":
+        case "BUY":
         case "BUYING":
             return Choice.Buying;
         case "2":
         case "2.":
+        case "SAVE":
         case "SAVING":
             return Choice.Saving;
         case "3":
         case "3.":
+        case "EXIT":
         case "EXITING":
             return Choice.Exiting;
         case "DECIDING":
