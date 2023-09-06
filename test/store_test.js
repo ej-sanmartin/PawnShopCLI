@@ -1,6 +1,8 @@
 import {assert} from 'chai';
+import sinon from 'sinon';
 
-import {createStore} from '../store.js';
+import {Person} from '../person.js';
+import {createStore, handleBuy, Store} from '../store.js';
 
 describe('Store Class Tests:', () => {
     it("Store class properly initialized", () => {
@@ -56,4 +58,30 @@ describe('Store Class Tests:', () => {
         let gold = store.inventory.get("GOLD");
         assert.isUndefined(gold);
     });
+});
+
+describe('Store Prompt Tests:', () => {
+    afterEach(() => {
+        sinon.restore();
+    });
+
+    it("handleBuy catches exit command", () => {
+        let mockedPromptOutput = {request: "Exit", quantity: -1};
+
+        let testStore = createStore();
+        let testPerson = new Person(/*name=*/"Test", /*age=*/21, /*money=*/200);
+
+        let mock = sinon.mock(testStore);
+        mock.expects('handleBuyPrompt').once().returns(mockedPromptOutput);
+        mock.expects('doKeepGoing').never();
+
+        let consoleSpy = sinon.spy(console, 'log');
+        assert.equal(0, consoleSpy.callCount);
+
+        handleBuy(testStore, testPerson);
+
+        mock.verify();
+        mock.restore();
+        consoleSpy.restore();
+    })
 });

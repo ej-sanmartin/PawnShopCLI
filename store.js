@@ -131,12 +131,68 @@ class Store {
         return {result: true, money: money_remaining};
     }
 
-     displayInventory() {
+    /**
+     * @property {Function} handleBuyPrompt prompts user for what they want and how many
+     * @returns {CustomerRequest} a struct like object that contains the customers experience traveling on company dime
+     */
+    handleBuyPrompt() {
+        let requested_item = "";
+        let quantity = -1;
+        while (true) {
+            this.displayInventory();
+            console.log("EXIT\n")
+
+            if (requested_item === "") {
+                requested_item = sanitizeStringInput(prompt("Whatya buying?\n"));
+            }
+
+            if (requested_item === "Exit") {
+                break;
+            }
+
+            if (quantity === -1) {
+                quantity = sanitizeNumberInput(prompt("How many?\t"));
+            }
+
+            if (requested_item != "" && quantity > 0) {
+                break;
+            }
+
+            console.log("What was that?\n");
+        }
+
+        return {request: requested_item, quantity: quantity};
+    }
+
+    /**
+     * @property {Function} doKeepGoing whether player wants to continue
+     * @returns {boolean} whether player wants to continue. False is no, True is yes
+     */
+    doKeepGoing() {
+        let result;
+        while (true) {
+            let response = sanitizeStringInput(prompt("Anything else? (yN)\n"));
+
+            if (response === "Y") {
+                result = true;
+                break;
+            } else  if (response === "N") {
+                result = false;
+                break;
+            }
+
+            console.log("Sorry, something's in my ear.\n");
+        }
+
+        return result;
+    }
+
+    displayInventory() {
         console.log("Item______________Price___Qty");
         for (const [itemName, itemInfo] of this.inventory) {
             console.log(`${itemName}______________${itemInfo.price}______${itemInfo.quantity}`);
         }
-     }
+    }
 }
 
 /**
@@ -159,63 +215,6 @@ function createStore() {
 
 /**
  * 
- * @param {Store} store facility being interacted with
- * @returns {CustomerRequest} a struct like object that contains the customers experience traveling on company dime
- */
-function handleBuyPrompt(store) {
-    let requested_item = "";
-    let quantity = -1;
-    while (true) {
-        store.displayInventory();
-        console.log("EXIT\n")
-
-        if (requested_item === "") {
-            requested_item = sanitizeStringInput(prompt("Whatya buying?\n"));
-        }
-
-        if (requested_item === "Exit") {
-            break;
-        }
-
-        if (quantity === -1) {
-            quantity = sanitizeNumberInput(prompt("How many?\t"));
-        }
-
-        if (requested_item != "" && quantity > 0) {
-            break;
-        }
-
-        console.log("What was that?\n");
-    }
-
-    return {request: requested_item, quantity: quantity};
-}
-
-/**
- * @property {Function} doKeepGoing whether player wants to continue
- * @returns {boolean} whether player wants to continue. False is no, True is yes
- */
-function doKeepGoing() {
-    let result;
-    while (true) {
-        let response = sanitizeStringInput(prompt("Anything else? (yN)\n"));
-
-        if (response === "Y") {
-            result = true;
-            break;
-        } else  if (response === "N") {
-            result = false;
-            break;
-        }
-
-        console.log("Sorry, something's in my ear.\n");
-    }
-
-    return result;
-}
-
-/**
- * 
  * @param {Store} store store that player is interacting with
  * @param {Person} customer the player is represented as a 'customer'
  * @returns {Person} because JS is pass-by-value type language, returns updated
@@ -223,18 +222,18 @@ function doKeepGoing() {
  */
 function handleBuy(store, customer) {
     while (true) {
-       let customerRequest = handleBuyPrompt(store);
+       let customerRequest = store.handleBuyPrompt();
 
-       if (customerRequest.request === "Exit\n") {
+       if (customerRequest.request === "Exit") {
         break;
        }
-
+ 
        let result = store.maybeBuy(customerRequest.request,
                                    customerRequest.quantity, customer.money);
 
        if (result.result === true) {
             customer.money = result.money;
-            let keepGoing = doKeepGoing();
+            let keepGoing = store.doKeepGoing();
             if (keepGoing) continue;
             break;
        }
